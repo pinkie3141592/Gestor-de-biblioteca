@@ -6,8 +6,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.FileReader;
 
-
-
 public class GestorLibros {
 
     ArrayList<Libro> libros;
@@ -44,11 +42,27 @@ public class GestorLibros {
     {
         if(libro != null)
             libros.add(libro);
+
+        String codigo  = libro.getCodigo();
+        String titulo  = libro.getTitulo();
+        String autor  = libro.getAutor();
+        int ano  = libro.getAno();
+
+        System.out.println("SE AGREGO: \n");
+        System.out.println("\n------------------------");
+        System.out.printf("%-10s %s\n", "CODIGO:", codigo);
+        System.out.printf("%-10s %s\n", "TITULO:", titulo);
+        System.out.printf("%-10s %s\n", "AUTOR:", autor);
+        System.out.printf("%-10s %d\n", "AÑO:", ano);
+        System.out.println("------------------------");
+
+
     }
 
     public void guardarLibros()
     {
-        try{
+        try
+        {
         BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
 
             for(Libro l : libros)
@@ -68,6 +82,7 @@ public class GestorLibros {
 
     public void cargarLibros()
     {
+        libros.clear();
         try
         {
             BufferedReader br = new BufferedReader(new FileReader(archivo));
@@ -83,6 +98,7 @@ public class GestorLibros {
                     partes[2],
                     Integer.parseInt(partes[3])
                 );
+                System.out.println();
                 libros.add(l);
             }
             br.close();
@@ -95,34 +111,55 @@ public class GestorLibros {
 
     }   
 
-    public void mostrarLibros()
+    public boolean confirmarExistencia(String codigo)//confirma existencia por codigo
     {
-        boolean existe = false;
-        try
+        for(Libro l : libros)
         {
-            BufferedReader br = new BufferedReader(new FileReader(archivo));
-
-            String linea;
-            while ((linea = br.readLine()) != null) 
-            {
-                System.out.println(linea);
-                existe = true;
-            }
-
-            br.close();
-
-            if(!existe)
-            {
-                System.out.println("\n\tNo se han registrado libros en el catalogo");
-                Utilidades.pausa();
-            }
-
+            if(l.getCodigo().equalsIgnoreCase(codigo))
+                return true;
         }
 
-        catch(IOException e)
+        return false;
+    }
+
+    public void mostrarLibro(Libro libro)
+    {
+        if(!confirmarExistencia(libro.getCodigo()))
         {
-            e.printStackTrace();
+            System.out.println("\n\tEl libro buscado no existe en el catalogo");
+            Utilidades.pausa();
+            return;
+        }   
+
+        System.out.println("\n------------------------");
+        System.out.printf("%-10s %s\n", "CODIGO:", libro.getCodigo());
+        System.out.printf("%-10s %s\n", "TITULO:", libro.getTitulo());
+        System.out.printf("%-10s %s\n", "AUTOR:", libro.getAutor());
+        System.out.printf("%-10s %s\n", "AÑO:", libro.getAno());
+        System.out.println("------------------------");
+
+
+        /*
+        System.out.println("""
+            \n\t\tComo deseas visualizar el catalogo?
+            \t\n1. Orden por codigo
+            \t\n2. Orden alfabetico de titulo
+            \t\n3. Orden alfabetico de autor   
+        """);
+        int opcion;
+        */
+    }
+
+    public void mostrarCatalogo()
+    {
+        if(libros.isEmpty())
+        {
+            System.out.println("\n\tNo se han registrado libros");
+            return;
         }
+
+        for(Libro l : libros)
+            mostrarLibro(l);
     }
 
 }

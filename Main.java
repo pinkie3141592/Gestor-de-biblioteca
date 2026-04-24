@@ -8,6 +8,8 @@ public class Main {
     public static void main(String[] args)
     {
         gestor.crearCarpetayArchivo();
+        gestor.cargarLibros(); //esto hace que si ya hay libros guardados, se consideren en la nueva sesion
+
 
         int opcion = 0;
         do
@@ -41,22 +43,25 @@ public class Main {
             switch(opcion)
             {
                 case 1:
-                    gestor.mostrarLibros();
+                    gestor.mostrarCatalogo();
+                    Utilidades.pausa();
                     break;
                 case 2:
                     Libro libro = leerLibro();
                     if(libro!=null)
-                        gestor.agregarLibro(leerLibro());
-                    else{
+                        gestor.agregarLibro(libro);
+                    else
                         System.out.println("\tOperacion cancelda");
-                        Utilidades.pausa();
-                    }
+                    
+                    Utilidades.pausa();
                     break;
                 case 3:
                     gestor.guardarLibros();
+                    Utilidades.pausa();
                     break;
                 case 4:
                     gestor.cargarLibros();
+                    Utilidades.pausa();
                     break;
             }
         }while(opcion != 5);
@@ -65,17 +70,19 @@ public class Main {
 
     public static Libro leerLibro()
     {
+        String respuesta;
         String autor = "", titulo = "", codigo = "", anoStr = "";
         int ano = 0;
 
-        boolean valido = true;
+        boolean valido = false;
 
         do
         {
-
+            //CICLO PARA CODIGO--------------------------------------------------------------------
             do{
                 Utilidades.limpiarConsola();
                 System.out.println("\nREGISTRO DE LIBRO\n");
+
                 codigo = Utilidades.leerCampo("\nCODIGO (L###): ");
 
                 if (codigo == null) 
@@ -90,6 +97,8 @@ public class Main {
 
             }while(!Validaciones.validarCodigo(codigo));
 
+
+            //CICLO PARA TITULO ----------------------------------------------------------------------
             do 
             {
                 titulo = Utilidades.leerCampo("\nTITULO (Letras y caracteres)");
@@ -103,6 +112,8 @@ public class Main {
 
             } while(!Validaciones.validarTitulo(titulo));
 
+
+            //CICLO PARA AUTOR -----------------------------------------------------------------------
             do 
             {
                 autor = Utilidades.leerCampo("\nAUTOR (Solo letras y espacios): ");
@@ -116,6 +127,8 @@ public class Main {
 
             } while (!Validaciones.validarAutor(autor));
 
+
+            //CICLO PARA AÑO --------------------------------------------------------------------------------
             do 
             {
                 anoStr = Utilidades.leerCampo("\nAÑO: ");
@@ -139,44 +152,47 @@ public class Main {
 
             }while(!Validaciones.validarEntero(ano, 0, 2100) || !Validaciones.validarAno(anoStr));
 
-            String respuesta;
 
             do 
             {
                 System.out.println("\nLibro registrado correctamente\nDesea registrar otro libro (si/no)?: ");
                 respuesta = sc.nextLine();
 
-                respuesta.toUpperCase();
+                respuesta = respuesta.toUpperCase();
 
                 if(Validaciones.validarPalabra(respuesta))
                 {
-                    System.out.println("\nSI PASO EL PRIMER PUTO IF");
-                    System.out.println("\nSI ES PALABRA");
+
                     if(Utilidades.validarSiNo(respuesta))
                     {
-                        System.out.println("\nSI ES SI O NO");
                         if(respuesta.equals("NO"))
                         {
                             valido = false;                        
                         }
-                        else
-                            System.out.println("\nIntroduce si o no");
+                        if(respuesta.equals("SI"))
+                        {
+                            valido = true;
+                        }
                     }
                     else
-                        System.out.println("\nIntroduce si o no");
+                        System.out.println("\n\tIntroduce si o no");
                 } 
                 else
-                    System.out.println("\nIntroduce si o no");              
+                    System.out.println("\n\tIntroduce si o no");     
+                Utilidades.pausa();         
             }while(!Validaciones.validarPalabra(respuesta) || !Utilidades.validarSiNo(respuesta));
-
 
         }while(valido);
         
         ano = Integer.parseInt(anoStr);
 
-        return new Libro("L" + codigo, titulo, autor, ano);
-
-
+        return new Libro(codigo, titulo, autor, ano);
     }
+
+    
+
+
+
+
 
 }
