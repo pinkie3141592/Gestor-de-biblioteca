@@ -48,14 +48,8 @@ public class GestorLibros {
         String autor  = libro.getAutor();
         int ano  = libro.getAno();
 
-        System.out.println("SE AGREGO: \n");
-        System.out.println("\n------------------------");
-        System.out.printf("%-10s %s\n", "CODIGO:", codigo);
-        System.out.printf("%-10s %s\n", "TITULO:", titulo);
-        System.out.printf("%-10s %s\n", "AUTOR:", autor);
-        System.out.printf("%-10s %d\n", "AÑO:", ano);
-        System.out.println("------------------------");
-
+        System.out.println("\nEl libro se agrego correctamente!");
+       
 
     }
 
@@ -138,28 +132,59 @@ public class GestorLibros {
         System.out.printf("%-10s %s\n", "AÑO:", libro.getAno());
         System.out.println("------------------------");
 
-
-        /*
-        System.out.println("""
-            \n\t\tComo deseas visualizar el catalogo?
-            \t\n1. Orden por codigo
-            \t\n2. Orden alfabetico de titulo
-            \t\n3. Orden alfabetico de autor   
-        """);
-        int opcion;
-        */
     }
 
-    public void mostrarCatalogo()
+    public void mostrarCatalogo(ArrayList<Libro> lista)
     {
-        if(libros.isEmpty())
+        if(lista.isEmpty())
         {
             System.out.println("\n\tNo se han registrado libros");
             return;
         }
 
-        for(Libro l : libros)
+        for(Libro l : lista)
             mostrarLibro(l);
+    }
+
+    public ArrayList<Libro> ordenarAutor()
+    {
+        ArrayList<Libro> copia = new ArrayList<>(libros);
+
+        copia.sort((a,b) -> a.getAutor().compareToIgnoreCase(b.getAutor()));
+
+        return copia;
+    }
+
+    public ArrayList<Libro> ordenarTitulo()
+    {
+        ArrayList<Libro> copia = new ArrayList<>(libros);
+
+        copia.sort((a,b) -> a.getTitulo().compareToIgnoreCase(b.getTitulo()));
+
+        return copia;
+    }
+
+    public ArrayList<Libro> ordenarCodigo()
+    {
+        ArrayList<Libro> copia = new ArrayList<>(libros);
+
+        copia.sort((a,b) -> 
+        {
+            int numA = Integer.parseInt(a.getCodigo().substring(1));
+            int numB = Integer.parseInt(b.getCodigo().substring(1));
+            return Integer.compare(numA, numB);
+        });
+
+        return copia;
+    }
+
+    public ArrayList<Libro> ordenarAno()
+    {
+        ArrayList<Libro> copia = new ArrayList<> (libros);
+
+        copia.sort((a,b) -> Integer.compare(a.getAno(), b.getAno()));
+
+        return copia;
     }
 
 }
