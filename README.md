@@ -35,3 +35,44 @@ The system automatically loads stored data on startup and allows user interactio
 
 ## Project Structure
 
+├── Main.java
+├── GestorLibros.java
+├── Libro.java
+├── Validaciones.java
+├── Utilidades.java
+
+
+---
+
+## Installation & Usag
+```bash
+javac *.java
+```
+
+## Data persistence
+
+Books are stored in:
+```bash
+biblioteca/libros.txt
+```
+
+Record Format:
+```bash
+L001,El Quijote,Cervantes,1605
+```
+
+## Concepts applied
+Concepts Applied
+Object-Oriented Programming (OOP)
+File handling (reading and writing)
+Use of collections (ArrayList)
+Sorting with Comparator and lambda expressions
+Input validation using regular expressions
+Separation of responsibilities
+
+
+
+
+
+
+
