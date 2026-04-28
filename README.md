@@ -35,11 +35,11 @@ The system automatically loads stored data on startup and allows user interactio
 
 ## Project Structure
 
-├── Main.java
-├── GestorLibros.java
-├── Libro.java
-├── Validaciones.java
-├── Utilidades.java
+├── Main.java<br>
+├── GestorLibros.java<br>
+├── Libro.java<br>
+├── Validaciones.java<br>
+├── Utilidades.java<br>
 
 
 ---
