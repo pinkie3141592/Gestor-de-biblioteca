@@ -33,17 +33,6 @@ The system automatically loads stored data on startup and allows user interactio
 
 ---
 
-## Project Structure
-
-├── Main.java<br>
-├── GestorLibros.java<br>
-├── Libro.java<br>
-├── Validaciones.java<br>
-├── Utilidades.java<br>
-
-
----
-
 ## Installation & Usag
 ```bash
 javac *.java
