@@ -1,80 +1,37 @@
-# Gestor de Libros (Java CLI)
+# Book Manager (Java CLI)
 
 ![Java](https://img.shields.io/badge/Java-17+-blue)
 ![Status](https://img.shields.io/badge/Status-Completed-green)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-Aplicación de consola desarrollada en Java para la gestión de un catálogo de libros. Permite registrar, almacenar, visualizar y ordenar información utilizando persistencia en archivos locales.
+A console-based Java application for managing a book catalog. It allows users to register, store, view, and sort books using local file persistence.
 
 ---
 
-## Descripción
+## Description
 
-Este proyecto implementa un sistema sencillo de gestión de libros desde la terminal, enfocado en aplicar principios de programación orientada a objetos, manejo de archivos y validación de datos.
+This project implements a simple book management system in the terminal, focused on applying object-oriented programming principles, file handling, and data validation.
 
-El sistema carga automáticamente la información almacenada y permite al usuario interactuar mediante un menú.
-
----
-
-## Características
-
-- Registro de libros con:
-  - Código único (`L###`)
-  - Título
-  - Autor
-  - Año de publicación
-- Persistencia en archivo de texto
-- Carga automática de datos
-- Validación de entradas
-- Ordenamiento por:
-  - Código
-  - Título
-  - Autor
+The system automatically loads stored data on startup and allows user interaction through a menu-driven interface.
 
 ---
 
-## Estructura del Proyecto
+## Features
 
-.
-├── Main.java
-├── GestorLibros.java
-├── Libro.java
-├── Validaciones.java
-├── Utilidades.java
-
+- Book registration with:
+  - Unique code (`L###`)
+  - Title
+  - Author
+  - Publication year
+- Text file persistence
+- Automatic data loading on startup
+- Input validation
+- Sorting by:
+  - Code
+  - Title
+  - Author
 
 ---
 
-## Instalación y Uso
+## Project Structure
 
-### Compilar
-```bash
-javac *.java
-
-Ejecutar
-
-java Main
-
-Persistencia de Datos
-
-Los libros se almacenan en:
-
-biblioteca/libros.txt
-
-Formato de los registros:
-
-L001,El Quijote,Cervantes,1605
-
-Conceptos Aplicados
-
-    Programación Orientada a Objetos (POO)
-
-    Manejo de archivos (lectura y escritura)
-
-    Uso de colecciones (ArrayList)
-
-    Ordenamiento con Comparator y expresiones lambda
-
-    Validación con expresiones regulares
-
-    Separación de responsabilidades
