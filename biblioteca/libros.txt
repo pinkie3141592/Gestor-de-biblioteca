@@ -2,3 +2,4 @@ L001,Pedro Paramo,Juan Rulfo,1955
 L000,Ciudades de papel,John Green,2014
 L000,Mi lucha,Adolf Hitler,1924
 L003,Ficciones,Jorge Luis Borges,1944
+L362,El libro troll,El Rubius,2014
